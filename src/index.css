@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* #root {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fafafa;
+} */
