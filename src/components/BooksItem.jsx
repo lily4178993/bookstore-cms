@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 /**
  * BooksItem Component - Represents a single book item.
  *
- * This component displays information about a book, including its title and author.
+ * This component displays information about a book, including its category, title and author.
  * It also provides a "Delete" button to delete the book.
  *
  * @param {Object} props - The component's props.
- * @param {Object} props.book - The book object with id, author, and title.
+ * @param {Object} props.book - The book object with id, author, category and title.
  * @param {Function} props.deleteBook - A function to delete the book.
  */
 const BooksItem = ({ book, deleteBook }) => (
@@ -16,7 +16,7 @@ const BooksItem = ({ book, deleteBook }) => (
     <span>
       <span className="font-bold">Category:</span>
       {' '}
-      <b>Action</b>
+      <b>{book.category}</b>
     </span>
     <h2>
       <span className="font-bold">Title</span>
@@ -41,6 +41,7 @@ BooksItem.propTypes = {
   book: PropTypes.shape({
     id: PropTypes.number.isRequired,
     author: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
   deleteBook: PropTypes.func.isRequired,
