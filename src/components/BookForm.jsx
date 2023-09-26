@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import categoryOptions from '../constants/categoryListData';
+import Button from './Button';
 
 /**
  * BookForm Component - Represents a form for adding new books.
@@ -70,7 +71,13 @@ const BookForm = ({ addBook }) => {
           </option>
         ))}
       </select>
-      <button type="submit" title="Add Book" className="border ml-4 px-4 py-1">Add Book</button>
+      <Button
+        type="submit"
+        name="Add Book"
+        title="Add Book"
+        onClick={handleSubmit}
+        className="border ml-4 px-4 py-1"
+      />
     </form>
   );
 };

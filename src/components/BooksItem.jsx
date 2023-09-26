@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from './Button';
 
 /**
  * BooksItem Component - Represents a single book item.
@@ -26,14 +27,13 @@ const BooksItem = ({ book, deleteBook }) => (
       <span className="font-bold">Author</span>
       {book.author}
     </span>
-    <button
+    <Button
       type="button"
+      name="Delete"
       title="delete"
       onClick={() => deleteBook(book.id)}
       className="border ml-4 px-4 py-1"
-    >
-      Delete
-    </button>
+    />
   </div>
 );
 
