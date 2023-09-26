@@ -10,15 +10,13 @@ import BooksItem from './BooksItem';
  *
  * @param {Object} props - The component's props.
  * @param {Object[]} props.books - An array of book objects.
- * @param {Function} props.deleteBook - A function to delete a book.
  */
-const BookList = ({ books, deleteBook }) => (
+const BookList = ({ books }) => (
   <>
     {books.map((book) => (
       <BooksItem
-        key={book.id}
+        key={book.item_id}
         book={book}
-        deleteBook={deleteBook}
       />
     ))}
   </>
@@ -27,12 +25,12 @@ const BookList = ({ books, deleteBook }) => (
 BookList.propTypes = {
   books: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      item_id: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  deleteBook: PropTypes.func.isRequired,
 };
 
 export default BookList;

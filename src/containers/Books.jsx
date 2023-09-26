@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { BookForm, BookList } from '../components';
-import initialBooksData from '../constants/initialBooksData';
 
 /**
  * Books Component - Represents a collection of books.
@@ -10,16 +10,8 @@ import initialBooksData from '../constants/initialBooksData';
  * individual books and a BookForm component for adding new books.
  */
 const Books = () => {
-  const [books, setBooks] = useState(initialBooksData);
+  const { books } = useSelector((state) => state.books);
 
-  const addBook = (newBook) => {
-    setBooks([...books, newBook]);
-  };
-
-  const deleteBook = (id) => {
-    const updatedBooks = books.filter((book) => book.id !== id);
-    setBooks(updatedBooks);
-  };
   return (
     <section className="h-[80vh]">
       <br />
@@ -28,11 +20,10 @@ const Books = () => {
       <br />
       <BookList
         books={books}
-        deleteBook={deleteBook}
       />
       <br />
       <br />
-      <BookForm addBook={addBook} />
+      <BookForm />
     </section>
   );
 };

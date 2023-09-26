@@ -1,29 +1,35 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../redux/books/booksSlice';
 import categoryOptions from '../constants/categoryListData';
+import Button from './Button';
 
 /**
  * BookForm Component - Represents a form for adding new books.
  *
  * This component provides a form with input fields for entering a book's category,
- * title and author. When the user submits the form, it invokes the `addBook`
+ * title and author. When the user submits the form, it invokes the `addNewBook`
  * function to add a new book to the collection.
- *
- * @param {Object} props - The component's props.
- * @param {Function} props.addBook - A function to add a new book.
  */
-const BookForm = ({ addBook }) => {
+const BookForm = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [category, setCategory] = useState(categoryOptions[0]);
+  const dispatch = useDispatch();
 
+  /**
+   * Handles the submission of the book form.
+   *
+   * @param {Event} e - The form submission event.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     if ((author.trim() === '') || (title.trim() === '')) return;
     const newBook = {
-      id: Date.now(), author, title, category,
+      item_id: String(Date.now()), author, title, category,
     };
-    addBook(newBook);
+
+    dispatch(addBook(newBook));
     setAuthor('');
     setTitle('');
     setCategory(categoryOptions[0]);
@@ -70,13 +76,15 @@ const BookForm = ({ addBook }) => {
           </option>
         ))}
       </select>
-      <button type="submit" title="Add Book" className="border ml-4 px-4 py-1">Add Book</button>
+      <Button
+        type="submit"
+        name="Add Book"
+        title="Add Book"
+        onClick={handleSubmit}
+        className="border ml-4 px-4 py-1"
+      />
     </form>
   );
-};
-
-BookForm.propTypes = {
-  addBook: PropTypes.func.isRequired,
 };
 
 export default BookForm;
