@@ -10,9 +10,28 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-// Define the initial state with an empty array of books and filtered books
+// Define the initial state with initial data of books and an empty array of filtered books
 const initialState = {
-  books: [],
+  books: [
+    {
+      item_id: 'item1',
+      title: 'The Great Gatsby',
+      author: 'John Smith',
+      category: 'Fiction',
+    },
+    {
+      item_id: 'item2',
+      title: 'Anna Karenina',
+      author: 'Leo Tolstoy',
+      category: 'Fiction',
+    },
+    {
+      item_id: 'item3',
+      title: 'The Selfish Gene',
+      author: 'Richard Dawkins',
+      category: 'Nonfiction',
+    },
+  ],
   filteredBooks: [],
 };
 
@@ -42,7 +61,9 @@ const booksSlice = createSlice({
      * @param {number} action.payload - The ID of the book to remove.
      */
     removeBook: (state, action) => {
-      state.books = state.books.filter((book) => book.id !== action.payload);
+      state.books = state.books.filter(
+        (book) => book.item_id !== action.payload,
+      );
     },
 
     /**

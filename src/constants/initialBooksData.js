@@ -10,19 +10,19 @@
 
 const initialBooksData = [
   {
-    id: 1,
+    id: '1',
     author: 'Author 01',
     title: 'Title 01',
     category: 'Fiction',
   },
   {
-    id: 2,
+    id: '2',
     author: 'Author 02',
     title: 'Title 02',
     category: 'Action',
   },
   {
-    id: 3,
+    id: '3',
     author: 'Author 03',
     title: 'Title 03',
     category: 'Action',
