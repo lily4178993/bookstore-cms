@@ -2,33 +2,45 @@
  * Redux Slice for Category Data
  *
  * This Redux slice manages the state for category-related data, including an array of categories.
- * It provides a reducer that always returns "Under construction" when queried for status.
+ * It provides a reducer to handle category selection.
  *
  * @module categorySlice
  */
 
 import { createSlice } from '@reduxjs/toolkit';
 
+// Define the initial state with an empty array of categories and no selected category
 const initialState = {
   categories: [],
+  selectedCategory: null, // Initially no category is selected
 };
 
-/**
- * Get the status of the category slice (always returns "Under construction").
- *
- * @function
- * @name getStatus
- * @returns {string} The status message.
- */
-
+// Create a category slice
 const categorySlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-    getStatus: () => 'Under construction',
+    /**
+     * Set the selected category in the state.
+     *
+     * @function
+     * @name selectCategory
+     * @param {Object} state - The current state of the categories slice.
+     * @param {string|null} action.payload - The category to select (or null to clear selection).
+     */
+    selectCategory: (state, action) => {
+      state.selectedCategory = action.payload;
+    },
   },
 });
 
+/**
+ * Redux actions for the categories slice.
+ *
+ * @typedef {Object} CategoryActions
+ * @property {Function} selectCategory - Set the selected category in the state.
+ */
+
 // Export the reducer function and actions
-export const { getStatus } = categorySlice.actions;
+export const { selectCategory } = categorySlice.actions;
 export default categorySlice.reducer;
