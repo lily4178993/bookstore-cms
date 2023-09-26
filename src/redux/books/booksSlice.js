@@ -77,13 +77,9 @@ const booksSlice = createSlice({
      */
     filteredBooksByCategory: (state, action) => {
       const selectedCategory = action.payload;
-      if (selectedCategory === null) {
-        state.filteredBooks = state.books;
-      } else {
-        state.filteredBooks = state.books.filter(
-          (book) => book.category === selectedCategory,
-        );
-      }
+      state.filteredBooks = selectedCategory === 'All'
+        ? state.books
+        : state.books.filter((book) => book.category === selectedCategory);
     },
   },
 });
