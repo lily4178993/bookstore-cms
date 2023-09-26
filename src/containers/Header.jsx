@@ -7,11 +7,21 @@ import userIcon from '../assets/images/icons8-user.png';
  *
  * This component provides a header section that typically includes the
  * application title, a navigation menu (Menu component), and a user icon.
+ *
+ * @component
  */
+
 const Header = () => (
   <header className="flex items-center justify-between gap-1">
     <span className="text-2xl">Bookstore CMS</span>
-    <Menu />
+    <Menu
+      menuLinks={[
+        { name: 'Books', path: '/' },
+        { name: 'Categories', path: '/categories/All' },
+      ]}
+      className="px-3 py-2"
+      onClick={null}
+    />
     <div
       type="button"
       className="justify-self-end p-4 rounded-full"
