@@ -3,36 +3,35 @@
  *
  * This Redux slice manages the state for book-related data, including an array of books.
  * It provides reducers for adding and removing books from the state
- and filtering books by category.
+ * and filtering books by category.
  *
  * @module booksSlice
  */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const BOOKS_API_URL = process.env.REACT_APP_URL;
+const BOOKS_API_KEY = process.env.REACT_APP_KEY;
+
+/**
+ * Async thunk action to fetch books from an API.
+ *
+ * @function
+ * @name fetchBooks
+ * @returns {Promise} A Promise that resolves to the fetched books data.
+ * @throws {Error} If there is an issue with the API request.
+ */
+const fetchBooks = createAsyncThunk('books/fetchBooks', () => axios
+  .get(`${BOOKS_API_URL}${BOOKS_API_KEY}/books`)
+  .then((response) => response.data));
 
 // Define the initial state with initial data of books and an empty array of filtered books
 const initialState = {
-  books: [
-    {
-      item_id: 'item1',
-      title: 'The Great Gatsby',
-      author: 'John Smith',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item2',
-      title: 'Anna Karenina',
-      author: 'Leo Tolstoy',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item3',
-      title: 'The Selfish Gene',
-      author: 'Richard Dawkins',
-      category: 'Nonfiction',
-    },
-  ],
+  books: [],
   filteredBooks: [],
+  loading: 'idle',
+  error: null,
 };
 
 // Create a books slice
@@ -73,7 +72,7 @@ const booksSlice = createSlice({
      * @name filteredBooksByCategory
      * @param {Object} state - The current state of the books slice.
      * @param {string|null} action.payload - The selected category
-     to filter by (or null to show all books).
+     *   to filter by (or null to show all books).
      */
     filteredBooksByCategory: (state, action) => {
       const selectedCategory = action.payload;
@@ -81,6 +80,26 @@ const booksSlice = createSlice({
         ? state.books
         : state.books.filter((book) => book.category === selectedCategory);
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        if (state.loading === 'idle') {
+          state.loading = 'pending';
+        }
+      })
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        if (state.loading === 'pending') {
+          state.loading = 'idle';
+          state.books.push(action.payload);
+        }
+      })
+      .addCase(fetchBooks.rejected, (state, action) => {
+        if (state.loading === 'pending') {
+          state.loading = 'idle';
+          state.error = action.error;
+        }
+      });
   },
 });
 
@@ -93,6 +112,7 @@ const booksSlice = createSlice({
  * @property {Function} filteredBooksByCategory - Filter books by category.
  */
 
+export { fetchBooks };
 // Export the reducer function and actions
 export const { addBook, filteredBooksByCategory, removeBook } = booksSlice.actions;
 export default booksSlice.reducer;
