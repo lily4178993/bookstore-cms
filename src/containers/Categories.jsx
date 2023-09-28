@@ -14,11 +14,32 @@ import { BookList } from '../components';
  */
 
 const Categories = () => {
+  /**
+   * React Router useParams hook to extract the 'category' parameter from the URL.
+   * @type {Object}
+   * @property {string} category - The selected category from the URL parameter.
+   */
   const { category: selectedCategoryParam } = useParams();
   const [books, setBooks] = useState(initialBooksData);
-  const [selectedCategory, setSelectedCategory] = useState(selectedCategoryParam || 'All');
+
+  // Use localStorage to get or set the selected category
+  const [selectedCategory, setSelectedCategory] = useState(() => {
+    const storedCategory = localStorage.getItem('selectedCategory');
+    // If it's not in localStorage, use the URL parameter
+    return storedCategory || selectedCategoryParam || 'All';
+  });
 
   useEffect(() => {
+    // Store the selected category in localStorage
+    localStorage.setItem('selectedCategory', selectedCategory);
+
+    /**
+     * Filtered list of books based on the selected category.
+     * @type {Object[]}
+     * @property {string} id - The unique identifier of the book.
+     * @property {string} title - The title of the book.
+     * @property {string} category - The category of the book.
+     */
     const filteredBooks = selectedCategory === 'All'
       ? initialBooksData
       : initialBooksData.filter((book) => book.category === selectedCategory);
