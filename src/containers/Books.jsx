@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BookForm, BookList } from '../components';
+import { BookForm, BooksItem } from '../components';
 import { fetchBooks } from '../redux/books/booksSlice';
 
 /**
@@ -40,7 +40,15 @@ const Books = () => {
         Object.entries(books).map(([itemID, bookList]) => (
           <div key={itemID}>
             {Object.values(bookList).map((book) => (
-              <BookList key={itemID} books={book} />
+              book.map((element) => (
+                <BooksItem
+                  key={Object.keys(bookList)}
+                  bookKey={(itemID)}
+                  author={element.author}
+                  category={element.category}
+                  title={element.title}
+                />
+              ))
             ))}
           </div>
         ))) : (<p>No books available</p>)}
