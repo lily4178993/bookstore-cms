@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BookForm, BookList } from '../components';
-import initialBooksData from '../constants/initialBooksData';
+import { fetchBooks } from '../redux/books/booksSlice';
 
 /**
  * Books Component - Represents a collection of books.
@@ -8,31 +9,44 @@ import initialBooksData from '../constants/initialBooksData';
  * This component displays a collection of books, allowing users to view and
  * manage the list of books. It includes a BookList component for displaying
  * individual books and a BookForm component for adding new books.
+ *
+ * @component
  */
 const Books = () => {
-  const [books, setBooks] = useState(initialBooksData);
+  const { books, loading, error } = useSelector((state) => state.books);
+  const dispatch = useDispatch();
 
-  const addBook = (newBook) => {
-    setBooks([...books, newBook]);
-  };
+  useEffect(() => {
+    if (books.length === 0) {
+      dispatch(fetchBooks());
+    }
+  }, [books.length, dispatch]);
 
-  const deleteBook = (id) => {
-    const updatedBooks = books.filter((book) => book.id !== id);
-    setBooks(updatedBooks);
-  };
   return (
     <section className="h-[80vh]">
       <br />
       <h1 className="text-3xl text-center">Book Collections</h1>
       <br />
       <br />
-      <BookList
-        books={books}
-        deleteBook={deleteBook}
-      />
+      {loading && (<p>Loading...</p>)}
+      {error && (
+      <p>
+        Error:
+        {' '}
+        {error.message}
+      </p>
+      )}
+      {books && books.length !== 0 ? (
+        Object.entries(books).map(([itemID, bookList]) => (
+          <div key={itemID}>
+            {Object.values(bookList).map((book) => (
+              <BookList key={itemID} books={book} />
+            ))}
+          </div>
+        ))) : (<p>No books available</p>)}
       <br />
       <br />
-      <BookForm addBook={addBook} />
+      <BookForm />
     </section>
   );
 };

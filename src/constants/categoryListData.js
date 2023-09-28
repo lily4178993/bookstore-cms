@@ -23,6 +23,7 @@ const categoryListData = [
   'Historical',
   'Horror',
   'Mystery',
+  'Nonfiction',
   'Psychological',
   'Romance',
   'Sci fi',
