@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { removeBook } from '../redux/books/booksSlice';
+import { fetchBooks, removeBook } from '../redux/books/booksSlice';
 import Button from './Button';
 
 /**
@@ -14,7 +14,7 @@ const BooksItem = ({
 }) => {
   const dispatch = useDispatch();
   const handleDeleteBook = () => {
-    dispatch(removeBook(bookKey));
+    dispatch(removeBook(bookKey)).then(() => dispatch(fetchBooks()));
   };
   return (
     <div className="border p-4">

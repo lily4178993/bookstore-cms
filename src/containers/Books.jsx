@@ -28,30 +28,26 @@ const Books = () => {
       <h1 className="text-3xl text-center">Book Collections</h1>
       <br />
       <br />
-      {loading && (<p>Loading...</p>)}
+      {loading === 'pending' && (<p>Loading...</p>)}
+      {books && books.length !== 0 && (
+        Object.entries(books).map(([itemId, book]) => (
+          <BooksItem
+            key={itemId}
+            bookKey={(itemId)}
+            author={book[0].author}
+            category={book[0].category}
+            title={book[0].title}
+          />
+        )))}
       {error && (
       <p>
+        No books available.
+        {' '}
         Error:
         {' '}
         {error.message}
       </p>
       )}
-      {books && books.length !== 0 ? (
-        Object.entries(books).map(([itemID, bookList]) => (
-          <div key={itemID}>
-            {Object.values(bookList).map((book) => (
-              book.map((element) => (
-                <BooksItem
-                  key={Object.keys(bookList)}
-                  bookKey={(itemID)}
-                  author={element.author}
-                  category={element.category}
-                  title={element.title}
-                />
-              ))
-            ))}
-          </div>
-        ))) : (<p>No books available</p>)}
       <br />
       <br />
       <BookForm />

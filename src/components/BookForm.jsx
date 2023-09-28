@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../redux/books/booksSlice';
+import { addBook, fetchBooks } from '../redux/books/booksSlice';
 import categoryOptions from '../constants/categoryListData';
 import Button from './Button';
 
@@ -29,7 +29,7 @@ const BookForm = () => {
       item_id: String(Date.now()), author, title, category,
     };
 
-    dispatch(addBook(newBook));
+    dispatch(addBook(newBook)).then(() => dispatch(fetchBooks()));
     setAuthor('');
     setTitle('');
     setCategory(categoryOptions[0]);
@@ -67,7 +67,7 @@ const BookForm = () => {
         }}
         className="border ml-4 px-4 py-1"
       >
-        {categoryOptions.map((categoryOption) => (
+        {categoryOptions.slice(1).map((categoryOption) => (
           <option
             key={`categoryOptions.length-${categoryOption}`}
             value={categoryOption}
