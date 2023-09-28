@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BookForm, BookList } from '../components';
+import { BookForm, BooksItem } from '../components';
 import { fetchBooks } from '../redux/books/booksSlice';
 
 /**
@@ -28,22 +28,27 @@ const Books = () => {
       <h1 className="text-3xl text-center">Book Collections</h1>
       <br />
       <br />
-      {loading && (<p>Loading...</p>)}
+      {loading === 'pending' && (<p>Loading...</p>)}
+      {books && books.length !== 0 && (
+        books.map((book) => (
+          <BooksItem
+            key={book.item_id}
+            bookKey={book.item_id}
+            author={book.author}
+            category={book.category}
+            title={book.title}
+          />
+        ))
+      )}
       {error && (
       <p>
+        No books available.
+        {' '}
         Error:
         {' '}
         {error.message}
       </p>
       )}
-      {books && books.length !== 0 ? (
-        Object.entries(books).map(([itemID, bookList]) => (
-          <div key={itemID}>
-            {Object.values(bookList).map((book) => (
-              <BookList key={itemID} books={book} />
-            ))}
-          </div>
-        ))) : (<p>No books available</p>)}
       <br />
       <br />
       <BookForm />

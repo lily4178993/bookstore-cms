@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
   Books, Categories, Footer, Header,
 } from './containers';
-import categoryListData from './constants/categoryListData';
 
 /**
  * App Component - Represents the main application component.
@@ -14,6 +14,9 @@ import categoryListData from './constants/categoryListData';
  */
 
 function App() {
+  const { categories: categoryOptions } = useSelector(
+    (state) => state.categories,
+  );
   return (
     <>
       <Header />
@@ -29,8 +32,8 @@ function App() {
             element={<Categories />}
           />
 
-          {categoryListData && categoryListData.length !== 0
-            ? categoryListData.map((categoryElement) => (
+          {categoryOptions && categoryOptions.length !== 0
+            ? categoryOptions.map((categoryElement) => (
               <Route
                 key={categoryElement}
                 path={`/categories/${categoryElement}`}
