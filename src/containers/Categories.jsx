@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { filteredBooksByCategory } from '../redux/books/booksSlice';
-import categoryListData from '../constants/categoryListData';
-import initialBooksData from '../constants/initialBooksData';
-import { BookList } from '../components';
+import { BooksItem } from '../components';
+import { selectCategory } from '../redux/categories/categoriesSlice';
 
 /**
  * Categories Component - Represents a section for displaying categories and books.
@@ -22,43 +20,28 @@ const Categories = () => {
    * @property {string} category - The selected category from the URL parameter.
    */
   const { category: selectedCategoryParam } = useParams();
-  const [books, setBooks] = useState(initialBooksData);
 
-  // Use localStorage to get or set the selected category
   const [selectedCategory, setSelectedCategory] = useState(() => {
     const storedCategory = localStorage.getItem('selectedCategory');
-    // If it's not in localStorage, use the URL parameter
     return storedCategory || selectedCategoryParam || 'All';
   });
+  const { categories: categoryOptions } = useSelector((state) => state.categories);
+  const { filteredBooks, loading, error } = useSelector((state) => state.books);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Store the selected category in localStorage
     localStorage.setItem('selectedCategory', selectedCategory);
 
-    /**
-     * Filtered list of books based on the selected category.
-     * @type {Object[]}
-     * @property {string} id - The unique identifier of the book.
-     * @property {string} title - The title of the book.
-     * @property {string} category - The category of the book.
-     */
-    const filteredBooks = selectedCategory === 'All'
-      ? initialBooksData
-      : initialBooksData.filter((book) => book.category === selectedCategory);
-
-    setBooks(filteredBooks);
-  }, [selectedCategory]);
-
-  const deleteBook = (id) => {
-    const updatedBooks = books.filter((book) => book.id !== id);
-    setBooks(updatedBooks);
-  };
+    // Dispatch the action to filter books by category
+    dispatch(selectCategory(selectedCategory));
+  }, [dispatch, filteredBooks.length, selectedCategory, selectedCategoryParam]);
 
   return (
     <section className="min-h-[100vh] flex gap-2">
       <aside className="w-fit shadow-inner">
         <ul>
-          {categoryListData.map((categoryElement) => (
+          {categoryOptions.map((categoryElement) => (
             <li key={categoryElement}>
               <Link
                 to={`/categories/${categoryElement}`}
@@ -74,13 +57,27 @@ const Categories = () => {
         </ul>
       </aside>
       <div className="w-full bg-slate-300">
-        {books && books.length !== 0 ? (
-          <BookList
-            books={books}
-            deleteBook={deleteBook}
-          />
-        ) : (
-          'No books'
+        {loading === 'pending' && (<p>Loading...</p>)}
+        {filteredBooks && filteredBooks.length !== 0 ? (
+          filteredBooks.map((book) => (
+            <BooksItem
+              key={book.item_id}
+              bookKey={book.item_id}
+              author={book.author}
+              category={book.category}
+              title={book.title}
+            />
+          ))
+        ) : (<p>No books available.</p>)}
+
+        {error && (
+        <p>
+          No books available.
+          {' '}
+          Error:
+          {' '}
+          {error.message}
+        </p>
         )}
       </div>
     </section>

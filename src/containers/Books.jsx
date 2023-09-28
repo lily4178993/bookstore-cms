@@ -30,15 +30,16 @@ const Books = () => {
       <br />
       {loading === 'pending' && (<p>Loading...</p>)}
       {books && books.length !== 0 && (
-        Object.entries(books).map(([itemId, book]) => (
+        books.map((book) => (
           <BooksItem
-            key={itemId}
-            bookKey={(itemId)}
-            author={book[0].author}
-            category={book[0].category}
-            title={book[0].title}
+            key={book.item_id}
+            bookKey={book.item_id}
+            author={book.author}
+            category={book.category}
+            title={book.title}
           />
-        )))}
+        ))
+      )}
       {error && (
       <p>
         No books available.

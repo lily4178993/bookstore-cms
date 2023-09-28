@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addBook, fetchBooks } from '../redux/books/booksSlice';
-import categoryOptions from '../constants/categoryListData';
 import Button from './Button';
 
 /**
@@ -12,9 +11,10 @@ import Button from './Button';
  * function to add a new book to the collection.
  */
 const BookForm = () => {
+  const { categories: categoryOptions } = useSelector((state) => state.categories);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [category, setCategory] = useState(categoryOptions[0]);
+  const [category, setCategory] = useState(categoryOptions[1]);
   const dispatch = useDispatch();
 
   /**
@@ -32,7 +32,7 @@ const BookForm = () => {
     dispatch(addBook(newBook)).then(() => dispatch(fetchBooks()));
     setAuthor('');
     setTitle('');
-    setCategory(categoryOptions[0]);
+    setCategory(categoryOptions[1]);
   };
 
   return (
@@ -63,7 +63,7 @@ const BookForm = () => {
           if (event) {
             return setCategory(event.target.value);
           }
-          return setCategory(categoryOptions[0]);
+          return setCategory(categoryOptions[1]);
         }}
         className="border ml-4 px-4 py-1"
       >

@@ -10,6 +10,7 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { selectCategory } from '../categories/categoriesSlice';
 
 const BOOKS_API_URL = process.env.REACT_APP_URL;
 const BOOKS_API_KEY = process.env.REACT_APP_KEY;
@@ -78,24 +79,7 @@ const initialState = {
 const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-
-    /**
-     * Reducer to filter books by category.
-     *
-     * @function
-     * @name filteredBooksByCategory
-     * @param {Object} state - The current state of the books slice.
-     * @param {string|null} action.payload - The selected category
-     *   to filter by (or null to show all books).
-     */
-    filteredBooksByCategory: (state, action) => {
-      const selectedCategory = action.payload;
-      state.filteredBooks = selectedCategory === 'All'
-        ? state.books
-        : state.books.filter((book) => book.category === selectedCategory);
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(addBook.fulfilled, (state) => {
@@ -112,28 +96,30 @@ const booksSlice = createSlice({
       .addCase(fetchBooks.fulfilled, (state, action) => {
         if (state.loading === 'pending') {
           state.loading = 'fulfilled';
-          state.books = action.payload;
         }
+        state.books = Object.entries(action.payload).map(
+          ([bookId, bookArray]) => ({
+            item_id: bookId,
+            author: bookArray[0].author,
+            title: bookArray[0].title,
+            category: bookArray[0].category,
+          }),
+        );
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         if (state.books.length === 0) {
           state.loading = 'idle';
           state.error = action.error;
         }
+      })
+      .addCase(selectCategory, (state, action) => {
+        const selectedCategory = action.payload;
+        state.filteredBooks = selectedCategory === 'All'
+          ? state.books
+          : state.books.filter((book) => book.category === selectedCategory);
       });
   },
 });
 
-/**
- * Redux actions for the books slice.
- *
- * @typedef {Object} BooksActions
- * @property {Function} addBook - Add a new book to the state.
- * @property {Function} removeBook - Remove a book from the state by ID.
- * @property {Function} filteredBooksByCategory - Filter books by category.
- */
-
-// Export the reducer function and actions
 export { addBook, fetchBooks, removeBook };
-export const { filteredBooksByCategory } = booksSlice.actions;
 export default booksSlice.reducer;
