@@ -12,6 +12,7 @@
  * const categoryList = ['Action', 'Adventure', 'Comedy', ...];
  */
 const categoryListData = [
+  'All',
   'Action',
   'Adventure',
   'Comedy',
