@@ -7,8 +7,10 @@ import Button from './Button';
  * BookForm Component - Represents a form for adding new books.
  *
  * This component provides a form with input fields for entering a book's category,
- * title and author. When the user submits the form, it invokes the `addNewBook`
+ * title and author. When the user submits the form, it invokes the `addBook`
  * function to add a new book to the collection.
+ *
+ * @component
  */
 const BookForm = () => {
   const { categories: categoryOptions } = useSelector((state) => state.categories);

@@ -16,12 +16,12 @@ const BOOKS_API_URL = process.env.REACT_APP_URL;
 const BOOKS_API_KEY = process.env.REACT_APP_KEY;
 
 /**
- * Async thunk action to remove a book from the API by its ID.
+ * Adds a new book to the API.
  *
  * @function
- * @name removeBook
- * @param {string} bookId - The ID of the book to be removed.
- * @returns {Promise} A Promise that resolves to the ID of the removed book.
+ * @name addBook
+ * @param {Object} newBook - The new book data to be added.
+ * @returns {Promise} A Promise that resolves to the added book data.
  * @throws {Error} If there is an issue with the API request.
  */
 const addBook = createAsyncThunk('books/addBook', async (newBook) => {
