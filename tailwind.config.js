@@ -6,7 +6,7 @@ module.exports = {
       colors: {
         primary: '#307bbe',
         secondary: '#0290ff',
-        ternary: '#e8e8e8',
+        ternary: '#fafafa',
       },
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
