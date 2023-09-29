@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addBook } from '../redux/books/booksSlice';
-import categoryOptions from '../constants/categoryListData';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBook, fetchBooks } from '../redux/books/booksSlice';
 import Button from './Button';
 
 /**
  * BookForm Component - Represents a form for adding new books.
  *
  * This component provides a form with input fields for entering a book's category,
- * title and author. When the user submits the form, it invokes the `addNewBook`
+ * title and author. When the user submits the form, it invokes the `addBook`
  * function to add a new book to the collection.
+ *
+ * @component
  */
 const BookForm = () => {
+  const { categories: categoryOptions } = useSelector((state) => state.categories);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [category, setCategory] = useState(categoryOptions[0]);
+  const [category, setCategory] = useState(categoryOptions[1]);
   const dispatch = useDispatch();
 
   /**
@@ -29,10 +31,10 @@ const BookForm = () => {
       item_id: String(Date.now()), author, title, category,
     };
 
-    dispatch(addBook(newBook));
+    dispatch(addBook(newBook)).then(() => dispatch(fetchBooks()));
     setAuthor('');
     setTitle('');
-    setCategory(categoryOptions[0]);
+    setCategory(categoryOptions[1]);
   };
 
   return (
@@ -63,11 +65,11 @@ const BookForm = () => {
           if (event) {
             return setCategory(event.target.value);
           }
-          return setCategory(categoryOptions[0]);
+          return setCategory(categoryOptions[1]);
         }}
         className="border ml-4 px-4 py-1"
       >
-        {categoryOptions.map((categoryOption) => (
+        {categoryOptions.slice(1).map((categoryOption) => (
           <option
             key={`categoryOptions.length-${categoryOption}`}
             value={categoryOption}

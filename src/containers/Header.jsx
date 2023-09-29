@@ -1,12 +1,12 @@
 import React from 'react';
-import { Menu } from '../components';
+import { Link } from 'react-router-dom';
 import userIcon from '../assets/images/icons8-user.png';
 
 /**
  * Header Component - Represents the header section of the application.
  *
  * This component provides a header section that typically includes the
- * application title, a navigation menu (Menu component), and a user icon.
+ * application title, a navigation menu and a user icon.
  *
  * @component
  */
@@ -14,14 +14,24 @@ import userIcon from '../assets/images/icons8-user.png';
 const Header = () => (
   <header className="flex items-center justify-between gap-1">
     <span className="text-2xl">Bookstore CMS</span>
-    <Menu
-      menuLinks={[
-        { name: 'Books', path: '/' },
-        { name: 'Categories', path: '/categories/All' },
-      ]}
-      className="px-3 py-2"
-      onClick={null}
-    />
+    <ul className="flex gap-2">
+      <li>
+        <Link
+          to="/"
+          className="px-3 py-2"
+        >
+          Books
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/categories/All"
+          className="px-3 py-2"
+        >
+          Categories
+        </Link>
+      </li>
+    </ul>
     <div
       type="button"
       className="justify-self-end p-4 rounded-full"

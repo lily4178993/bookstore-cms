@@ -1,6 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { BookForm, BookList } from '../components';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { BookForm, BooksItem } from '../components';
+import { fetchBooks } from '../redux/books/booksSlice';
 
 /**
  * Books Component - Represents a collection of books.
@@ -8,9 +9,18 @@ import { BookForm, BookList } from '../components';
  * This component displays a collection of books, allowing users to view and
  * manage the list of books. It includes a BookList component for displaying
  * individual books and a BookForm component for adding new books.
+ *
+ * @component
  */
 const Books = () => {
-  const { books } = useSelector((state) => state.books);
+  const { books, loading, error } = useSelector((state) => state.books);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (books.length === 0) {
+      dispatch(fetchBooks());
+    }
+  }, [books.length, dispatch]);
 
   return (
     <section className="h-[80vh]">
@@ -18,9 +28,27 @@ const Books = () => {
       <h1 className="text-3xl text-center">Book Collections</h1>
       <br />
       <br />
-      <BookList
-        books={books}
-      />
+      {loading === 'pending' && (<p>Loading...</p>)}
+      {books && books.length !== 0 && (
+        books.map((book) => (
+          <BooksItem
+            key={book.item_id}
+            bookKey={book.item_id}
+            author={book.author}
+            category={book.category}
+            title={book.title}
+          />
+        ))
+      )}
+      {error && (
+      <p>
+        No books available.
+        {' '}
+        Error:
+        {' '}
+        {error.message}
+      </p>
+      )}
       <br />
       <br />
       <BookForm />

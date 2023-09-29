@@ -11,6 +11,8 @@
 - [💻 Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
+    - [Environment Variables](#environment-variables)
+    - [Setting Up Environment Variables](#setting-up-environment-variables)
   - [Install](#install)
   - [Usage](#usage)
   - [Deployment](#deployment)
@@ -56,47 +58,93 @@ To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-In order to run this project you need to have a computer, Internet, Keyboard and Mouse.
+To successfully run and contribute to this project, make sure you have the following:
+- **Node JS**: Required for installing project dependencies and running the development server.
+- **npm**: Learn how to manage project dependencies using npm (Node Package Manager).
+- **An Integrated Development Environment (IDE)**: We suggest using [Visual Studio Code](https://code.visualstudio.com/) as your code editor, but you can use any IDE of your choice.
 
 ### Setup
 
-To set up this project on your local machine, clone this repository to your desired folder:<br>
+To set up the **Bookstore CMS** project on your local machine, follow these steps:
+
+1. **Clone this repository**:
+    ```bash
+      git clone https://github.com/lily4178993/bookstore-cms.git
+      cd bookstore-cms
+    ```
+2. **Set up all the environment variable**.
+
+#### Environment Variables<a name="environment-variables"></a>
+
+To run the **Bookstore CMS** application, you need to configure the following environment variables:
+
+- `REACT_APP_URL`: The API URL of the [API Provider](https://www.notion.so/Bookstore-API-51ea269061f849118c65c0a53e88a739).
+- `REACT_APP_KEY`: The API Key for accessing the data form the API.
+
+
+#### Setting Up Environment Variables<a name="setting-up-environment-variables"></a>
+
+Follow these steps to set up your environment variables:
+
+1. Create a `.env` file in the project's root directory.
+2. Inside the `.env` file, add the necessary environment variables with their corresponding values. For example:
+    ```
+      REACT_APP_URL=your-api-url-here
+      REACT_APP_KEY=your-api-key-here
+    ```
+    Replace `your-api-url-here` and `your-api-key-here` with the actual values you obtained or want to use.
+> ////////////////////
+>
+> **Note**:
+> Keep these API keys and sensitive information confidential and do not commit the `.env` file to version control.
+>
+> ////////////////////
+
+---
+
+<!-- INSTALL -->
+## **Install 🏗️**<a name="install"></a>
+
+Once you have cloned the repository and configured the environment variables, you can run the following command to install the project's dependencies:
 
 ```bash
- git clone https://github.com/lily4178993/bookstore-cms.git
+  npm install
 ```
+---
 
-### Install
+<!-- USAGE -->
+## **Usage 📂**<a name="usage"></a>
 
-Installation is not necessary
+To use the **Bookstore CMS** application, follow these steps:
 
-### Usage
+1. **Track linter errors**
 
-To run the project, execute the following command:
+    Track errors with the following command:
+    - Track CSS linter errors, run:
+    ```bash
+    npx stylelint "**/*.{css,scss}" --fix
+    ```
+    - Track JavaScript linter errors, run:
+    ```bash
+    npx eslint "**/*.{js,jsx}" --fix
+    ```
 
-```sh
-npm run start
-```
+2. **Run the Development Server**:
+    - Open your terminal/command prompt.
+    - Navigate to the project's root directory.
+    - Run the following command:
+      ```bash
+        npm start
+      ```
+    This will start the development server.
 
-### Deployment
-
-You can deploy this project following these steps:
-
-On the console run:
-
-```sh
- npm run build
-```
-
-Start the development server:
-
-```sh
- npm run start
-```
-
-```sh
-The website will be deployed
-```
+3. **Access the Application**:
+    - Open your web browser.
+    - Navigate to the following URL:
+      ```bash
+        http://localhost:3000
+      ```
+    You will now be able to interact with the **Bookstore CMS** application in your browser.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

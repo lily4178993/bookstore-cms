@@ -9,10 +9,28 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-// Define the initial state with an empty array of categories and no selected category
+// Define the initial state with an array of categories and no selected category
 const initialState = {
-  categories: [],
-  selectedCategory: null, // Initially no category is selected
+  categories: [
+    'All',
+    'Action',
+    'Adventure',
+    'Comedy',
+    'Cooking',
+    'Drama',
+    'Fantasy',
+    'Fiction',
+    'Historical',
+    'Horror',
+    'Mystery',
+    'Psychological',
+    'Romance',
+    'Sci fi',
+    'Sport',
+    'Supernatural',
+    'Tragedy',
+  ],
+  selectedCategory: null,
 };
 
 // Create a category slice
