@@ -38,15 +38,15 @@ const Categories = () => {
   }, [dispatch, filteredBooks.length, selectedCategory, selectedCategoryParam]);
 
   return (
-    <section className="min-h-[100vh] flex gap-2">
-      <aside className="w-fit shadow-inner">
-        <ul>
+    <section className="min-h-screen bg-ternary">
+      <nav className="bg-slate-200">
+        <ul className="flex items-center overflow-y-auto w-screen">
           {categoryOptions.map((categoryElement) => (
-            <li key={categoryElement}>
+            <li key={categoryElement} className="ml-2">
               <Link
                 to={`/categories/${categoryElement}`}
                 className={`px-3 py-1 ${
-                  selectedCategory === categoryElement ? 'font-bold' : ''
+                  selectedCategory === categoryElement ? 'text-white bg-slate-500' : ''
                 }`}
                 onClick={() => setSelectedCategory(categoryElement)}
               >
@@ -55,9 +55,9 @@ const Categories = () => {
             </li>
           ))}
         </ul>
-      </aside>
-      <div className="w-full bg-slate-300">
-        {loading === 'pending' && (<p>Loading...</p>)}
+      </nav>
+      <div className="px-4 py-8 md:px-10 md:py-10 xl:px-[8%]">
+        {loading === 'pending' && (<p className="text-center mt-10">Loading...</p>)}
         {filteredBooks && filteredBooks.length !== 0 ? (
           filteredBooks.map((book) => (
             <BooksItem
@@ -68,15 +68,16 @@ const Categories = () => {
               title={book.title}
             />
           ))
-        ) : (<p>No books available.</p>)}
+        ) : (<p className="text-center mt-10">No books available for this category.</p>)}
 
         {error && (
-        <p>
-          No books available.
-          {' '}
+        <p className="text-center mt-10">
           Error:
           {' '}
           {error.message}
+          <br />
+          <br />
+          No books available.
         </p>
         )}
       </div>

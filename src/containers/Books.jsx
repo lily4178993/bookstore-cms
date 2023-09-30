@@ -23,8 +23,8 @@ const Books = () => {
   }, [books.length, dispatch]);
 
   return (
-    <section className="relative px-4 py-8 bg-ternary md:px-10 md:py-10 xl:px-[8%]">
-      {loading === 'pending' && (<p>Loading...</p>)}
+    <section className="h-screen relative px-4 py-8 bg-ternary md:px-10 md:py-10 xl:px-[8%]">
+      {loading === 'pending' && (<p className="text-center m-10">Loading...</p>)}
       <div className="h-[60vh] overflow-x-auto md:h-[70vh]">
         {books && books.length !== 0 && (
           books.map((book) => (
@@ -39,12 +39,13 @@ const Books = () => {
         )}
       </div>
       {error && (
-      <p>
-        No books available.
-        {' '}
+      <p className="text-center mt-10">
         Error:
-        {' '}
-        {error.message}
+          {' '}
+          {error.message}
+        <br />
+        <br />
+        No books available.
       </p>
       )}
       <BookForm />

@@ -17,7 +17,7 @@ const BooksItem = ({
     dispatch(removeBook(bookKey)).then(() => dispatch(fetchBooks()));
   };
   return (
-    <div className="relative max-w-[1175px] m-auto my-4 p-4 border bg-white flex justify-between">
+    <div className="relative max-w-[1175px] m-auto my-4 py-7 px-1.5 border bg-white flex justify-between md:p-4">
       <div>
         <span className="text-xs font-bold text-slate-400">{category}</span>
         <h2 className="text-sm font-bold -mt-2 -mb-2 md:text-2xl">{title}</h2>
@@ -54,10 +54,10 @@ const BooksItem = ({
           </span>
         </div>
         <div className="flex flex-col md:gap-3.5 md:ml-32 md:pl-8 md:border-l-2">
-          <span className="text-xs uppercase text-gray-400">
+          <span className="text-[7px] uppercase text-gray-400 md:text-[11px]">
             Current Chapter
           </span>
-          <span>Chapter 1</span>
+          <span className="text-[9px] md:text-base">Chapter 1</span>
           <Button
             name="Update Progress"
             title="Update Progress"
