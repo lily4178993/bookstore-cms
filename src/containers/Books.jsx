@@ -23,23 +23,21 @@ const Books = () => {
   }, [books.length, dispatch]);
 
   return (
-    <section className="h-[80vh]">
-      <br />
-      <h1 className="text-3xl text-center">Book Collections</h1>
-      <br />
-      <br />
+    <section className="relative px-4 py-8 bg-ternary md:px-10 md:py-10 xl:px-[8%]">
       {loading === 'pending' && (<p>Loading...</p>)}
-      {books && books.length !== 0 && (
-        books.map((book) => (
-          <BooksItem
-            key={book.item_id}
-            bookKey={book.item_id}
-            author={book.author}
-            category={book.category}
-            title={book.title}
-          />
-        ))
-      )}
+      <div className="h-[60vh] overflow-x-auto md:h-[70vh]">
+        {books && books.length !== 0 && (
+          books.map((book) => (
+            <BooksItem
+              key={book.item_id}
+              bookKey={book.item_id}
+              author={book.author}
+              category={book.category}
+              title={book.title}
+            />
+          ))
+        )}
+      </div>
       {error && (
       <p>
         No books available.
@@ -49,8 +47,6 @@ const Books = () => {
         {error.message}
       </p>
       )}
-      <br />
-      <br />
       <BookForm />
     </section>
   );
