@@ -40,7 +40,7 @@ const BookForm = () => {
   return (
     <div className="mt-6 pt-2 border-t-2 border-neutral-200">
       <span className="font-bold text-slate-500">Add New Book</span>
-      <form onSubmit={handleSubmit} className="max-w-[1080px] flex flex-col gap-2 md:flex-row md:items-stretch md:ml-5">
+      <form onSubmit={handleSubmit} className="max-w-[1080px] flex flex-col gap-2 md:flex-row md:items-stretch">
         <input
           type="text"
           name="bookTitle"

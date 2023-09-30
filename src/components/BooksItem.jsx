@@ -45,7 +45,7 @@ const BooksItem = ({
       </div>
       <div className="flex items-center gap-4 md:mx-10">
         <div className="relative w-12 h-12 rounded-full border-4 border-primary flex justify-center items-center">
-          <span className="font-roboto md:absolute left-12">
+          <span className="font-roboto md:absolute left-14">
             <span className="text-xs md:text-3xl">0%</span>
             <br />
             <span className="text-xs text-slate-400 hidden md:block">
