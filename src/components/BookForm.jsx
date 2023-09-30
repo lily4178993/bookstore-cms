@@ -38,54 +38,58 @@ const BookForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="bookTitle"
-        id="bookTitle"
-        placeholder="Book Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="border ml-4"
-      />
-      <input
-        type="text"
-        name="bookAuthor"
-        id="bookAuthor"
-        placeholder="Book Author"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-        className="border ml-4"
-      />
-      <select
-        name="category"
-        id="category"
-        value={category}
-        onChange={(event) => {
-          if (event) {
-            return setCategory(event.target.value);
-          }
-          return setCategory(categoryOptions[1]);
-        }}
-        className="border ml-4 px-4 py-1"
-      >
-        {categoryOptions.slice(1).map((categoryOption) => (
-          <option
-            key={`categoryOptions.length-${categoryOption}`}
-            value={categoryOption}
-          >
-            {categoryOption}
-          </option>
-        ))}
-      </select>
-      <Button
-        type="submit"
-        name="Add Book"
-        title="Add Book"
-        onClick={handleSubmit}
-        className="border ml-4 px-4 py-1"
-      />
-    </form>
+    <div className="mt-6 pt-2 border-t-2 border-neutral-200">
+      <span className="font-bold text-slate-500">Add New Book</span>
+      <form onSubmit={handleSubmit} className="max-w-[1080px] flex flex-col gap-2 md:flex-row md:items-stretch">
+        <input
+          type="text"
+          name="bookTitle"
+          id="bookTitle"
+          placeholder="Book Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="flex-1 border px-2 py-1 hover:px-5 focus:px-5 focus:outline-primary"
+        />
+        <input
+          type="text"
+          name="bookAuthor"
+          id="bookAuthor"
+          placeholder="Book Author"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
+          className="flex-1 border px-2 py-1 hover:px-5 focus:px-5 focus:outline-primary"
+        />
+        <select
+          name="category"
+          id="category"
+          value={category}
+          onChange={(event) => {
+            if (event) {
+              return setCategory(event.target.value);
+            }
+            return setCategory(categoryOptions[1]);
+          }}
+          className="flex-1 border px-1 py-1.5 hover:px-5 focus:px-5 focus:outline-primary"
+        >
+          {categoryOptions.slice(1).map((categoryOption) => (
+            <option
+              key={`categoryOptions.length-${categoryOption}`}
+              value={categoryOption}
+              className="text-primary"
+            >
+              {categoryOption}
+            </option>
+          ))}
+        </select>
+        <Button
+          type="submit"
+          name="Add Book"
+          title="Add Book"
+          onClick={handleSubmit}
+          className="border px-4 py-1 uppercase text-xs text-white bg-secondary hover:bg-primary focus:bg-primary focus:outline-trabsparent md:hover:px-5 md:focus:px-5"
+        />
+      </form>
+    </div>
   );
 };
 
