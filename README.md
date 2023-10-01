@@ -1,205 +1,192 @@
 <a name="readme-top"></a>
 
-<!-- TABLE OF CONTENTS -->
+# **Bookstore CMS**
 
-# 📗 Table of Contents
+Welcome to the Bookstore CMS, a web application for managing and categorizing your book collection. This project provides an intuitive user interface to add, edit, and categorize books, making it easy to keep your library organized. The Bookstore CMS is built with React, Redux, and React Router for efficient state management and dynamic routing.
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-- [💻 Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Setup](#setup)
-    - [Environment Variables](#environment-variables)
-    - [Setting Up Environment Variables](#setting-up-environment-variables)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Deployment](#deployment)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [📝 License](#license)
+## **Tech Stack** 🛠<a name="tech-stack"></a>
 
-<!-- PROJECT DESCRIPTION -->
+This project was built using a variety of modern technologies and tools:
 
-# 📖 [Bookstore CMS] <a name="about-project"></a>
+<details>
+  <summary><b>Frontend</b></summary>
+  
+  - [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+  - [Redux Toolkit](https://redux-toolkit.js.org/) - State management for React applications.
+  - [React Router](https://reactrouter.com/) - Routing library for React applications.
+  - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework.
+  - [Axios](https://axios-http.com/) - A promise-based HTTP client for making requests to your API.
+</details>
+<details>
+<summary><b>Backend</b></summary>
 
-**[Bookstore CMS]** is a React-based web application that enables users to browse books and add interract with them.
+  - Bookstore API: The custom API created for this project.
+    - [API Documentation](https://microverse.notion.site/Bookstore-API-51ea269061f849118c65c0a53e88a739): Documentation for the Bookstore API.
+</details>
+<details>
+<summary><b>Version Control</b></summary>
 
-## 🛠 Built With <a name="built-with"></a>
+  - [Git](https://git-scm.com/) - Distributed version control system.
+  - [GitHub](https://github.com/) - Web-based platform for version control and collaboration.
+</details>
+<details>
+<summary><b>Other Tools</b></summary>
 
-### Tech Stack <a name="tech-stack"></a>
+  - [VS Code](https://code.visualstudio.com/) - A lightweight code editor by Microsoft.
+</details>
 
- <ul>
-      <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li>
-      <li><a href="https://react.dev/">React</a></li>
-      <li><a href="https://testing-library.com/docs/react-testing-library/intro/">React-Testing-Library</a></li>
-      <li><a href="https://reactrouter.com/en/main">React-Router</a></li>
-      <li><a href="https://tailwindcss.com/docs/installation">Tailwind CSS</a></li>
-    </ul>
+Our project leverages these technologies to deliver a modern and efficient web application.
 
-<!-- Features -->
 
-### Key Features <a name="key-features"></a>
+## **Table of Contents**
 
-- **[Efficient]**
-- **[Interactive]**
+- [Tech Stack 🛠](#tech-stack)
+- [Getting Started 💻](#getting-started)
+  - [Prerequisites 🧱](#prerequisites)
+  - [Installation 🏗️](#installation)
+  - [Setting Up Environment Variables ⚙️](#setting-up-environment-variables)
+- [Running the Application 📋](#running-the-application)
+- [Project Structure 📗](#project-structure)
+- [Usage 📂](#usage)
+- [Contributing 🤝](#contributing)
+- [Acknowledgements 🙏](#acknowledgments)
+- [License 📝](#license)
+- [Overview 📷](#overview)
 
+## **Getting Started** 💻<a name="getting-started"></a>
+
+### **Prerequisites** 🧱<a name="prerequisites"></a>
+Before you begin, ensure you have met the following requirements:
+
+- Node.js: Download and install Node.js from the **[official website](https://nodejs.org/)**.
+- npm (Node Package Manager): npm is included with Node.js. Make sure you have npm installed as well.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- GETTING STARTED -->
+### **Installation** 🏗️<a name="installation"></a>
 
-## 💻 Getting Started <a name="getting-started"></a>
-
-To get a local copy up and running, follow these steps.
-
-### Prerequisites
-
-To successfully run and contribute to this project, make sure you have the following:
-- **Node JS**: Required for installing project dependencies and running the development server.
-- **npm**: Learn how to manage project dependencies using npm (Node Package Manager).
-- **An Integrated Development Environment (IDE)**: We suggest using [Visual Studio Code](https://code.visualstudio.com/) as your code editor, but you can use any IDE of your choice.
-
-### Setup
-
-To set up the **Bookstore CMS** project on your local machine, follow these steps:
-
-1. **Clone this repository**:
+1. Clone the repository to your local machine:
     ```bash
-      git clone https://github.com/lily4178993/bookstore-cms.git
-      cd bookstore-cms
+    git clone https://github.com/lily4178993/bookstore-cms.git
     ```
-2. **Set up all the environment variable**.
-
-#### Environment Variables<a name="environment-variables"></a>
-
-To run the **Bookstore CMS** application, you need to configure the following environment variables:
-
-- `REACT_APP_URL`: The API URL of the [API Provider](https://www.notion.so/Bookstore-API-51ea269061f849118c65c0a53e88a739).
-- `REACT_APP_KEY`: The API Key for accessing the data form the API.
-
-
-#### Setting Up Environment Variables<a name="setting-up-environment-variables"></a>
-
-Follow these steps to set up your environment variables:
-
-1. Create a `.env` file in the project's root directory.
-2. Inside the `.env` file, add the necessary environment variables with their corresponding values. For example:
-    ```
-      REACT_APP_URL=your-api-url-here
-      REACT_APP_KEY=your-api-key-here
-    ```
-    Replace `your-api-url-here` and `your-api-key-here` with the actual values you obtained or want to use.
-> ////////////////////
->
-> **Note**:
-> Keep these API keys and sensitive information confidential and do not commit the `.env` file to version control.
->
-> ////////////////////
-
----
-
-<!-- INSTALL -->
-## **Install 🏗️**<a name="install"></a>
-
-Once you have cloned the repository and configured the environment variables, you can run the following command to install the project's dependencies:
-
-```bash
-  npm install
-```
----
-
-<!-- USAGE -->
-## **Usage 📂**<a name="usage"></a>
-
-To use the **Bookstore CMS** application, follow these steps:
-
-1. **Track linter errors**
-
-    Track errors with the following command:
-    - Track CSS linter errors, run:
+2. Navigate to the project directory:
     ```bash
-    npx stylelint "**/*.{css,scss}" --fix
+    cd bookstore-cms
     ```
-    - Track JavaScript linter errors, run:
+3. Install the project dependencies:
     ```bash
-    npx eslint "**/*.{js,jsx}" --fix
+    npm install
     ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-2. **Run the Development Server**:
-    - Open your terminal/command prompt.
-    - Navigate to the project's root directory.
-    - Run the following command:
-      ```bash
-        npm start
-      ```
-    This will start the development server.
+### **Setting Up Environment Variables** ⚙️<a name="setting-up-environment-variables"></a>
 
-3. **Access the Application**:
-    - Open your web browser.
-    - Navigate to the following URL:
-      ```bash
-        http://localhost:3000
-      ```
-    You will now be able to interact with the **Bookstore CMS** application in your browser.
+The Bookstore CMS uses environment variables to configure certain settings. To set up these variables, follow these steps:
+
+1. Create a **`.env`** file in the project's root directory:
+    ```bash
+    touch .env
+    ```
+2. Open the **`.env`** file in a text editor of your choice.
+
+3. Define the following environment variables in the **`.env`** file:
+    ```bash
+    REACT_APP_URL=your_api_url_here
+    REACT_APP_KEY=your_api_key_here
+    ```
+    Replace **`your_api_url_here`** and **`your_api_key_here`** with the appropriate values for your API setup.
+
+4. Save the **`.env`** file.
+
+Now, the project is configured to use your custom environment variables.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## **Running the Application** 📋<a name="running-the-application"></a>
+
+To run the application locally, use the following command:
+
+**1. Fixing JavaScript/JSX Errors**
+
+To identify and automatically fix JavaScript/JSX errors using ESLint, run the following command:
+  ```bash
+   npx eslint "**/*.{js,jsx}" --fix
+  ```
+  ESLint will analyze your code and attempt to fix any issues automatically.
+
+**2. Fixing CSS/SCSS Errors**
+
+To identify and automatically fix CSS/SCSS errors using Stylelint, run the following command:
+  ```bash
+   npx stylelint "**/*.{css,scss}" --fix
+  ```
+  Stylelint will analyze your CSS and SCSS files and attempt to fix any issues automatically.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+**3. Run the Development Server**
+  ```bash
+   npm start
+  ```
+  This command will start the development server, and the application will be accessible at **`http://localhost:3000`** in your web browser.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## **Project Structure** 📗<a name="project-structure"></a>
+
+The project is organized as follows:
+
+- `src/`: Contains the source code of the application.
+  - `components/`: Contains reusable React components.
+  - `redux/`: Manages the application state using Redux.
+  - `assets/`: Stores static assets like images and icons.
+  - `containers/`: Defines the main pages of the application.
+- `App.js`: The root component of the application.
+- `.env`: Configuration file for environment variables.
+- `README.md`: This documentation file.
+- `package.json`: Defines project metadata and dependencies.
+- `public/`: Contains static files like the HTML template and the project's favicon.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## **Usage** 📂<a name="usage"></a>
+
+- Navigate to the **[Books](http://localhost:3000/)** page to view, add, and edit books.
+- Use the **[Categories](http://localhost:3000/categories/All)** page to categorize books by genre.
+- Easily manage your book collection using the intuitive user interface.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## **Contributing** 🤝<a name="contributing"></a>
+
+Contributions are welcome! If you'd like to contribute to the project, please follow these guidelines:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them using conventional commits.
+4. Push your branch to your fork.
+5. Open a pull request with a clear title and description.
+
+Please ensure your code adheres to the project's coding standards and is well-documented.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## **Acknowledgments** 🙏<a name="acknowledgements"></a>
+
+We would like to express our sincere gratitude to the talented artists and photographers who contributed their work to this project. Their beautiful images have enhanced the visual appeal of our application. Please take a moment to appreciate their creativity and generosity:
+
+- [Deemo](https://rayark.com/g/deemo/)
+- [Icon8](https://icons8.com/)
+
+We are thankful for their valuable contributions to our project, making it more visually appealing and engaging.
+
+
+## **License** 📝<a name="license"></a>
+
+This project is licensed under the MIT License - see the **[LICENSE](./LICENSE)** file for details.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- AUTHORS -->
+## **Overview** 📷<a name="overview"></a>
 
-## 👥 Author <a name="authors"></a>
+Here are some videos from the Bookstore CMS application:
 
-- GitHub: [@lily4178993](https://github.com/lily4178993)
-- LinkedIn: [Nelly T.](https://www.linkedin.com/in/nelly-t-330414266/)
+- **Desktop Version**:
+<video src="./design/desktop.mp4" controls title="Desktop version"></video>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- FUTURE FEATURES -->
-
-## 🔭 Future Features <a name="future-features"></a>
-
-- [ ] **[Add Redux in React components]**
-- [ ] **[Connect to API]**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- CONTRIBUTING -->
-
-## 🤝 Contributing <a name="contributing"></a>
-
-Contributions, issues, and feature requests are welcome!
-
-Feel free to check the [issues page](https://github.com/lily4178993/bookstore-cms/issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- SUPPORT -->
-
-## ⭐️ Show your support <a name="support"></a>
-
-If you like this project:
-
-- Star the project ⭐️
-- Fork the project 🎣
-- Share with others 🗺️
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGEMENTS -->
-
-## 🙏 Acknowledgments <a name="acknowledgements"></a>
-
-I would like to thanks Microverse Team for helping me.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LICENSE -->
-
-## 📝 License <a name="license"></a>
-
-This project is [MIT](./LICENSE) licensed.
+- **Mobile Version**:
+<video src="./design/mobile.mp4" controls title="Mobile version"></video>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
