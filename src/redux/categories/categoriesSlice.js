@@ -8,8 +8,18 @@
  */
 
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchBooks } from '../books/booksSlice';
 
-// Define the initial state with an array of categories and no selected category
+/**
+ * Initial state object for the categories slice.
+ *
+ * @typedef {Object} CategoriesInitialState
+ * @property {Array} categories - An array of categories.
+ * @property {null|string} selectedCategory - The currently selected category.
+ * @property {Array} filteredBooks - An array of book objects filtered by category.
+ * @property {string} loading - The loading state ('idle', 'pending', or 'fulfilled').
+ * @property {null|Error} error - An optional error object if there is an issue.
+ */
 const initialState = {
   categories: [
     'All',
@@ -31,6 +41,9 @@ const initialState = {
     'Tragedy',
   ],
   selectedCategory: null,
+  filteredBooks: [],
+  loading: 'idle',
+  error: null,
 };
 
 // Create a category slice
@@ -50,15 +63,42 @@ const categorySlice = createSlice({
       state.selectedCategory = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        if (state.loading === 'idle') {
+          state.loading = 'pending';
+        }
+      })
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        if (state.loading === 'pending') {
+          state.loading = 'idle';
+        }
+        const booksObject = typeof action.payload === 'object' ? action.payload : {};
+        const booksArray = Object.entries(booksObject).map(
+          ([bookId, bookArray]) => ({
+            item_id: bookId,
+            author: bookArray[0].author,
+            title: bookArray[0].title,
+            category: bookArray[0].category,
+          }),
+        );
+        if (state.selectedCategory === 'All') {
+          state.filteredBooks = booksArray;
+        } else {
+          state.filteredBooks = booksArray.filter(
+            (book) => book.category === state.selectedCategory,
+          );
+        }
+      })
+      .addCase(fetchBooks.rejected, (state, action) => {
+        if (state.filteredBooks.length === 0) {
+          state.loading = 'idle';
+          state.error = action.error;
+        }
+      });
+  },
 });
 
-/**
- * Redux actions for the categories slice.
- *
- * @typedef {Object} CategoryActions
- * @property {Function} selectCategory - Set the selected category in the state.
- */
-
-// Export the reducer function and actions
 export const { selectCategory } = categorySlice.actions;
 export default categorySlice.reducer;

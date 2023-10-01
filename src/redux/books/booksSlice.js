@@ -10,7 +10,6 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { selectCategory } from '../categories/categoriesSlice';
 
 const BOOKS_API_URL = process.env.REACT_APP_URL;
 const BOOKS_API_KEY = process.env.REACT_APP_KEY;
@@ -64,13 +63,11 @@ const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
  *
  * @typedef {Object} BooksInitialState
  * @property {Array} books - An array of book objects.
- * @property {Array} filteredBooks - An array of book objects filtered by category.
  * @property {string} loading - The loading state ('idle', 'pending', or 'fulfilled').
  * @property {null|Error} error - An optional error object if there is an issue.
  */
 const initialState = {
   books: [],
-  filteredBooks: [],
   loading: 'idle',
   error: null,
 };
@@ -111,12 +108,6 @@ const booksSlice = createSlice({
           state.loading = 'idle';
           state.error = action.error;
         }
-      })
-      .addCase(selectCategory, (state, action) => {
-        const selectedCategory = action.payload;
-        state.filteredBooks = selectedCategory === 'All'
-          ? state.books
-          : state.books.filter((book) => book.category === selectedCategory);
       });
   },
 });
