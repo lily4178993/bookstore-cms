@@ -11,7 +11,7 @@ const Categories = () => {
   const selectedCategoryParam = pathname.replace('/categories/', '');
 
   const { categories: categoryOptions } = useSelector((state) => state.categories);
-  const { filteredBooks } = useSelector((state) => state.categories);
+  const { filteredBooks, loading, error } = useSelector((state) => state.categories);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,6 +39,7 @@ const Categories = () => {
         </ul>
       </nav>
       <div className="px-4 py-8 md:px-10 md:py-10 xl:px-[8%]">
+        {loading === 'pending' && (<p className="text-center m-10">Loading...</p>)}
         {filteredBooks && filteredBooks.length !== 0 ? (
           filteredBooks.map((book) => (
             <BooksItem
@@ -51,6 +52,16 @@ const Categories = () => {
           ))
         ) : (
           <p className="text-center mt-10">No books available for this category.</p>
+        )}
+        {error && (
+        <p className="text-center mt-10">
+          Error:
+          {' '}
+          {error.message}
+          <br />
+          <br />
+          No books available.
+        </p>
         )}
       </div>
     </section>
