@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BookForm, BooksItem } from '../components';
+import { BookForm, BooksItem, LoadingBar } from '../components';
 import { fetchBooks } from '../redux/books/booksSlice';
+import errorImage from '../assets/images/error.jpeg';
 
 /**
  * Books Component - Represents a collection of books.
@@ -24,7 +25,7 @@ const Books = () => {
 
   return (
     <section className="h-screen relative px-4 py-8 bg-ternary md:px-10 md:py-10 xl:px-[8%]">
-      {loading === 'pending' && (<p className="text-center m-10">Loading...</p>)}
+      <LoadingBar isLoading={loading === 'pending'} />
       <div className="h-[60vh] overflow-x-auto md:h-[70vh]">
         {books && books.length !== 0 && (
           books.map((book) => (
@@ -39,14 +40,19 @@ const Books = () => {
         )}
       </div>
       {error && (
-      <p className="text-center mt-10">
-        Error:
-          {' '}
-          {error.message}
-        <br />
-        <br />
-        No books available.
-      </p>
+      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-ternary bg-errorColor">
+        <img src={errorImage} alt="error" className="max-h-96 xl:max-h-[900px]" />
+        <p>
+          <p className="text-2xl font-bold xl:text-4xl">Error when fetching data.</p>
+          <br />
+          <br />
+          <span className="font-bold xl:text-3xl">Try:</span>
+          <ul className="flex flex-col justify-start items-start list-disc xl:text-2xl">
+            <li>Checking your network cables, modem, and routers</li>
+            <li>Reconnecting to your wireless network</li>
+          </ul>
+        </p>
+      </div>
       )}
       <BookForm />
     </section>
