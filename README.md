@@ -184,9 +184,13 @@ This project is licensed under the MIT License - see the **[LICENSE](./LICENSE)*
 Here are some videos from the Bookstore CMS application:
 
 - **Desktop Version**:
-<video src="./design/desktop.mp4" controls title="Desktop version"></video>
+
+https://github.com/lily4178993/bookstore-cms/assets/101261047/d84f4716-17c7-41f8-a328-92fd07375a34
+
 
 - **Mobile Version**:
-<video src="./design/mobile.mp4" controls title="Mobile version"></video>
+
+https://github.com/lily4178993/bookstore-cms/assets/101261047/14d37177-6b52-40b2-8aa3-9b12d642e72c
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
