@@ -13,8 +13,17 @@
       {
         "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
       }
-    ],
-    "csstree/validator": true
+    ]
   },
-  "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css", "**/*.js", "**/*.jsx"]
+  "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css", "**/*.js", "**/*.jsx"],
+  "overrides": [
+    {
+      "files": [
+        "**/*.css"
+      ],
+      "rules": {
+        "csstree/validator": null
+      }
+    }
+  ]
 }
