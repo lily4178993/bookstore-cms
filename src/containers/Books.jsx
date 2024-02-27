@@ -42,7 +42,7 @@ const Books = () => {
       {error && (
       <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-ternary bg-errorColor">
         <img src={errorImage} alt="error" className="max-h-96 xl:max-h-[900px]" />
-        <p>
+        <div>
           <p className="text-2xl font-bold xl:text-4xl">Error when fetching data.</p>
           <br />
           <br />
@@ -51,7 +51,7 @@ const Books = () => {
             <li>Checking your network cables, modem, and routers</li>
             <li>Reconnecting to your wireless network</li>
           </ul>
-        </p>
+        </div>
       </div>
       )}
       <BookForm />
