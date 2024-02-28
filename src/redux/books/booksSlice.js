@@ -68,7 +68,7 @@ const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
  */
 const initialState = {
   books: [],
-  loading: 'idle',
+  loading: false,
   error: null,
 };
 
@@ -80,20 +80,16 @@ const booksSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addBook.fulfilled, (state) => {
-        state.loading = 'idle';
+        state.loading = false;
       })
       .addCase(removeBook.fulfilled, (state) => {
-        state.loading = 'idle';
+        state.loading = false;
       })
       .addCase(fetchBooks.pending, (state) => {
-        if (state.loading === 'idle') {
-          state.loading = 'pending';
-        }
+        state.loading = true;
       })
       .addCase(fetchBooks.fulfilled, (state, action) => {
-        if (state.loading === 'pending') {
-          state.loading = 'fulfilled';
-        }
+        state.loading = false;
         state.books = Object.entries(action.payload).map(
           ([bookId, bookArray]) => ({
             item_id: bookId,
@@ -105,7 +101,7 @@ const booksSlice = createSlice({
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         if (state.books.length === 0) {
-          state.loading = 'idle';
+          state.loading = false;
           state.error = action.error;
         }
       });

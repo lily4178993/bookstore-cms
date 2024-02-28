@@ -40,7 +40,13 @@ const Categories = () => {
         </ul>
       </nav>
       <div className="px-4 py-8 md:px-10 md:py-10 xl:px-[8%]">
-        <LoadingBar isLoading={loading === 'pending'} />
+        {
+        loading && (
+        <div className={`loading-bar ${loading ? 'visible' : 'hidden'}`}>
+          <LoadingBar />
+        </div>
+        )
+      }
         {filteredBooks && filteredBooks.length !== 0 ? (
           filteredBooks.map((book) => (
             <BooksItem
@@ -58,7 +64,7 @@ const Categories = () => {
         )}
         {error && (
         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-ternary bg-errorColor">
-          <img src={errorImage} alt="error" className="max-h-96 xl:max-h-[900px]" />
+          <img src={errorImage} alt="error" className="max-h-96" />
           <p>
             <p className="text-2xl font-bold xl:text-4xl">Error when fetching data.</p>
             <br />
