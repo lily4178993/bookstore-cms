@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchBooks, removeBook } from '../redux/books/booksSlice';
-import Button from './Button';
+import Button from './ux/Button';
 
 /**
  * BooksItem Component - Represents a single book item.

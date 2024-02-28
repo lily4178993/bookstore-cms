@@ -43,7 +43,7 @@ const initialState = {
   ],
   selectedCategory: null,
   filteredBooks: [],
-  loading: 'idle',
+  loading: false,
   error: null,
 };
 
@@ -67,14 +67,10 @@ const categorySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchBooks.pending, (state) => {
-        if (state.loading === 'idle') {
-          state.loading = 'pending';
-        }
+        state.loading = true;
       })
       .addCase(fetchBooks.fulfilled, (state, action) => {
-        if (state.loading === 'pending') {
-          state.loading = 'idle';
-        }
+        state.loading = false;
         const booksObject = typeof action.payload === 'object' ? action.payload : {};
         const booksArray = Object.entries(booksObject).map(
           ([bookId, bookArray]) => ({
@@ -94,7 +90,7 @@ const categorySlice = createSlice({
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         if (state.filteredBooks.length === 0) {
-          state.loading = 'idle';
+          state.loading = false;
           state.error = action.error;
         }
       });
